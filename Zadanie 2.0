@@ -1,0 +1,65 @@
+#include <iostream>
+
+
+using namespace std;
+
+class Kolo{
+    
+    public:
+        float x0,y0,r;
+    
+        Kolo(float srodekX,float srodekY,float promien){
+            x0 = srodekX;
+            y0 = srodekY;
+            if(promien <= 0){
+                cout << "Bledny promien, wartosc promienia musi byc wieksza od 0" << endl; // I tak tworzy klase
+            }
+            else{r = promien;}
+        }
+    
+        void wyswietl(){
+            cout << "Srodek kola - x:" << x0 << " y:" << y0;     
+        }
+};
+
+class Punkt{
+    
+    public:
+        float xp,yp;
+        
+        Punkt(float srodekX, float srodekY){
+            xp = srodekX;
+            yp = srodekY;
+        }
+        
+};
+
+bool sprawdz(float xk,float yk,float rk,float xp,float yp){
+    
+    if(xp<(xk+rk)&&yp<(yp+rk)){
+        cout << "Punkt lezy w kole" << endl;
+        return 1;
+    }
+    else{return 0;}
+}
+
+
+int main()
+{
+    float x,y,r;
+    
+    cout << "Wprowadz wspolrzedne srodka kola" << endl;
+    cout << "x: ";
+    cin >> x;
+    cout << "y: ";
+    cin >> y;
+    cout << "r: ";
+    cin >> r;
+    
+    Kolo k1 = Kolo(x,y,r);
+    Punkt p1 = Punkt(1,1);
+    
+    if(sprawdz(k1.x0,k1.y0,k1.r,p1.xp,p1.yp)==1){cout << "OK" << endl;}
+
+    return 0;
+}
