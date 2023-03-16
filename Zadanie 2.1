@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Klasa{
+    public:
+        int x;
+        int y;
+        int ID;
+        
+        Klasa(int zmienna1,int zmienna2, int nr){
+            x = zmienna1;
+            y = zmienna2;
+            ID = nr;
+            cout << "Obiekt utworzony" << endl;
+            cout << "Konstruktor parametryczny uruchomiony" << endl;
+            
+        }
+        
+        Klasa(const Klasa &kopia){
+            x = kopia.x;
+            y = kopia.y;
+            ID = kopia.ID + 1;
+            cout << "Konstruktor kopiujący uruchomiony" << endl;
+            //cout << "Utworzono kopie obiektu: " << kopia.ID << endl; 
+            //cout << "ID nowego obiektu ma nr: " << ID << endl;
+        }
+};
+
+int main()
+{
+    Klasa k1(1,1,1);
+    cout << endl;
+    Klasa k2(k1);
+    
+}
