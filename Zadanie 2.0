@@ -1,66 +1,45 @@
 #include <iostream>
-
+#include <string>
 
 using namespace std;
 
-class Kolo{
-    
+class Klasa{
     public:
-        float x0,y0,r;
-    
-        Kolo(float srodekX,float srodekY,float promien){
-            x0 = srodekX;
-            y0 = srodekY;
-            if(promien <= 0){
-                cout << "Bledny promien, wartosc promienia musi byc wieksza od 0" << endl; // I tak tworzy klase
-            }
-            else{r = promien;}
-        }
-    
-        void wyswietl(){
-            cout << "Srodek kola - x:" << x0 << " y:" << y0;     
-        }
-};
-
-class Punkt{
-    
-    public:
-        float xp,yp;
+        int x;
+        int y;
+        int id;
+        static int ID;
         
-        Punkt(float srodekX, float srodekY){
-            xp = srodekX;
-            yp = srodekY;
+        Klasa(int zmienna1,int zmienna2){
+            x = zmienna1;
+            y = zmienna2;
+            id = ID++;
+            cout << "Obiekt utworzony" << endl;
+            cout << "Konstruktor parametryczny uruchomiony" << endl;
+            cout << "ID nowego obiektu ma nr: " << ID << endl;
+            
         }
         
+        Klasa(Klasa &kopia){
+            x = kopia.x;
+            y = kopia.y;
+            
+            
+            id = ID++;
+            
+            cout << "Konstruktor kopiujący uruchomiony" << endl;
+            
+            //cout << "Utworzono kopie obiektu: " << kopia.ID << endl; 
+            cout << "ID nowego obiektu ma nr: " << ID << endl;
+        }
 };
-
-bool sprawdz(float xk,float yk,float rk,float xp,float yp){
-    
-    if(xp>(xk-rk)&&xp<(xk+rk)&&yp<(yp+rk)&&yp>(yk-rk)){
-        cout << "Punkt lezy w kole" << endl;
-        return 1;
-    }
-    else{return 0;}
-}
-
-
+int Klasa::ID = 0;
 int main()
 {
-    float x,y,r;
+    Klasa k1(1,1);
+    cout << endl;
+    Klasa k2(k1);
     
-    cout << "Wprowadz wspolrzedne srodka kola" << endl;
-    cout << "x: ";
-    cin >> x;
-    cout << "y: ";
-    cin >> y;
-    cout << "r: ";
-    cin >> r;
-    
-    Kolo k1 = Kolo(x,y,r);
-    Punkt p1 = Punkt(1,1);
-    
-    if(sprawdz(k1.x0,k1.y0,k1.r,p1.xp,p1.yp)==1){cout << "OK" << endl;}
-    else{cout<<"Punkt nie lezy w srodku kola"<<endl;}
-
-    return 0;
+    Klasa k3(k1);
+    Klasa k4(k2);
 }
