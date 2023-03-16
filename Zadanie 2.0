@@ -36,7 +36,7 @@ class Punkt{
 
 bool sprawdz(float xk,float yk,float rk,float xp,float yp){
     
-    if(xp<(xk+rk)&&yp<(yp+rk)){
+    if(xp>(xk-rk)&&xp<(xk+rk)&&yp<(yp+rk)&&yp>(yk-rk)){
         cout << "Punkt lezy w kole" << endl;
         return 1;
     }
@@ -60,6 +60,7 @@ int main()
     Punkt p1 = Punkt(1,1);
     
     if(sprawdz(k1.x0,k1.y0,k1.r,p1.xp,p1.yp)==1){cout << "OK" << endl;}
+    else{cout<<"Punkt nie lezy w srodku kola"<<endl;}
 
     return 0;
 }
